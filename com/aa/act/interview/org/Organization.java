@@ -24,7 +24,7 @@ public abstract class Organization {
 	 *
 	 */
 
-
+// notes created on read me
 	public Optional<Position> hire(Name person, String title) {
 		switch(title) {
 			case "CEO":
