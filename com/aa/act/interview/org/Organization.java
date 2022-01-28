@@ -1,13 +1,14 @@
 package com.aa.act.interview.org;
 
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class Organization {
 
 	private Position root;
-	
+	private int EmployeeCounter;
+
 	public Organization() {
+
 		root = createOrganization();
 	}
 	
@@ -19,18 +20,142 @@ public abstract class Organization {
 	 * @param person
 	 * @param title
 	 * @return the newly filled position or empty if no position has that title
-	 * //Joseph Congdon notes
-	 * The Position of COO is not filled by anyone inside the MyOrganization abstract class
-	 * If the parameter 'title' listed in the Object "Name" matches the Object of "Position" parameter of 'title' return a string that confirms that the position.title has been filled by the Name.first Name.last.
+	 *
 	 *
 	 */
+
+
 	public Optional<Position> hire(Name person, String title) {
-		//your code here
-		Arrays.stream(new Position("").getClass().getMethods()).toArray();
-		if (title.equals(createOrganization().getEmployee())){
+		switch(title) {
+			case "CEO":
+				System.out.println("The following Positions have just been filled");
+				this.root.setEmployee(Optional.of(new Employee(1, person)));
+				break;
+			case "President":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						position.setEmployee(Optional.of(new Employee(2, person)));
+					}
+				}
+				break;
+			case "VP Finance":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Finance")){
+								subPosition.setEmployee(Optional.of(new Employee(3, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "COO":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("COO")){
+								subPosition.setEmployee(Optional.of(new Employee(4, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "VP Marketing":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Marketing")){
+								subPosition.setEmployee(Optional.of(new Employee(5, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "VP Sales":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Sales")){
+								subPosition.setEmployee(Optional.of(new Employee(6, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "Salesperson":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("President")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Sales")){
+								for (Position subSubPosition : subPosition.getDirectReports()){
+								subSubPosition.setEmployee(Optional.of(new Employee(7, person)));
+								}
+							}
+						}
+					}
+				}
+				break;
+			case "CIO":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("CIO")){
+						position.setEmployee(Optional.of(new Employee(8, person)));
+					}
+				}
+				break;
+			case "VP Infrastructure":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("CIO")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Infrastructure")){
+								subPosition.setEmployee(Optional.of(new Employee(9, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "VP Technology":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("CIO")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Technology")){
+								subPosition.setEmployee(Optional.of(new Employee(10, person)));
+							}
+						}
+					}
+				}
+				break;
+			case "Director Enterprise Architecture":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("CIO")){
+						for (Position subPosition : position.getDirectReports()){
+							if (subPosition.getTitle().equals("VP Technology")){
+								for (Position sudoSubPosition : subPosition.getDirectReports()){
+									sudoSubPosition.setEmployee(Optional.of(new Employee(11, person)));
+								}
+							}
+						}
+					}
+				}
+				break;
+			case "Director Customer Technology":
+				for (Position position : this.root.getDirectReports()){
+					if (position.getTitle().equals("CIO")){
+						for (Position sudoPosition : position.getDirectReports()){
+							if (sudoPosition.getTitle().equals("VP Technology")){
+								for (Position subSubPosition : sudoPosition.getDirectReports()){
+									if (subSubPosition.getTitle().equals("Director Customer Technology")) {
+										subSubPosition.setEmployee(Optional.of(new Employee(12, person)));
+									}
+								}
+							}
+						}
+					}
+				}
+				break;
+
+			default:
 
 		}
-
 		return Optional.empty();
 	}
 

@@ -27,7 +27,6 @@ public class MyOrganization extends Organization {
 		vpt.addDirectReport(dct);
 		Position s = new Position("Salesperson");
 		vps.addDirectReport(s);
-		
 		return ceo;
 	}
 
